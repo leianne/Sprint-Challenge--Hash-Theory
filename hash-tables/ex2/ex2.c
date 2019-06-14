@@ -11,6 +11,17 @@ char **reconstruct_trip(Ticket **tickets, int length)
 
   /* YOUR CODE HERE */
 
+  for (int i = 0; i < length; i++) {
+    hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
+  }
+
+  char *dest = strdup("NONE");
+  for (int i = 0; i < length; i++) {
+    route[i] = hash_table_retrieve(ht, dest);
+    dest = route[i];
+  }
+  
+  destroy_hash_table(ht);
   return route;
 }
 
